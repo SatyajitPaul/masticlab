@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+{% block title %}Add Doctor{% endblock %}
+{% block content %}
+
+<div class="content-wrapper">
+          
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="mr-md-3 mr-xl-5">
+              <h2>Add Doctor</h2>
+              <p class="mb-md-0">Add New Doctor Here</p>
+            </div>
+            <div class="d-flex">
+              <i class="mdi mdi-home text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
+              <p class="text-primary mb-0 hover-cursor">Add Doctor</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-end flex-wrap">
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
+              <i class="mdi mdi-download text-muted"></i>
+            </button>
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+              <i class="mdi mdi-clock-outline text-muted"></i>
+            </button>
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+              <i class="mdi mdi-plus text-muted"></i>
+            </button>
+            <a href="/invoice"><button class="btn btn-primary mt-2 mt-xl-0" >Generate Invoice</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+
+
+        <div class="col-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Please Provide Doctor Details Here</h4>
+                <form class="form-sample" method = "post">
+                  <p class="card-description">
+                    Doctor Info
+                  </p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">First Name</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="fname" required />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Last Name</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="lname" required/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                        <div class="form-group row">
+                            <label class="col-sm-3 col-form-label">Phone Number</label>
+                            <div class="col-sm-9">
+                              <input type="text" class="form-control" name="phone" />
+                            </div>
+                          </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Membership</label>
+                        <div class="col-sm-4">
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="radio" class="form-check-input" name="membership" id="membershipRadios1" value="0" checked>
+                              Free
+                            </label>
+                          </div>
+                        </div>
+                        <div class="col-sm-5">
+                          <div class="form-check">
+                            <label class="form-check-label">
+                              <input type="radio" class="form-check-input" name="membership" id="membershipRadios2" value="1">
+                              Professional
+                            </label>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <p class="card-description">
+                    Address
+                  </p>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Address 1</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="adress1"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">State</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="state" value="Tripura" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Address 2</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="adress2" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Postcode</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="postcode"/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">City</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="city" />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Country</label>
+                        <div class="col-sm-9">
+                          <select class="form-control" name="country">
+                            <option value="India">India</option>
+                            <option value="Other Country">Other</option>
+                          </select>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row"><button type="submit" class="btn btn-dark btn-lg btn-block">Add Doctor</button></div>
+        
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+       
+    </div>
+    
+   
+    
+  </div>
+
+
+{% endblock %}

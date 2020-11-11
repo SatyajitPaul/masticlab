@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+{% block title %}Generate Invoice{% endblock %}
+{% block content %}
+
+<div class="content-wrapper">
+          
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="mr-md-3 mr-xl-5">
+              <h2>Invoice Details</h2>
+              <p class="mb-md-0">Details Invoice Shown Here</p>
+            </div>
+            <div class="d-flex">
+              <i class="mdi mdi-home text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
+              <p class="text-primary mb-0 hover-cursor">Invoice Details</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-end flex-wrap">
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
+              <i class="mdi mdi-download text-muted"></i>
+            </button>
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+              <i class="mdi mdi-clock-outline text-muted"></i>
+            </button>
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+              <i class="mdi mdi-plus text-muted"></i>
+            </button>
+            <a href="/invoice"><button class="btn btn-primary mt-2 mt-xl-0" >Create Invoice</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    
+
+
+    <div class="row">
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+          <div class="row">
+            <div class="col-md-6">
+              <div class="card-body">
+                <h4 class="card-title">Patient Details</h4>
+                
+                <div class="template-demo">
+                    <div class="table-responsive">
+                        <table class="table">
+                          
+                          <tbody>
+                            <tr>
+                              <td><b>Name:</b></td>
+                              <td>{{ pat.first_name }} {{ pat.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Phone:</b></td>
+                                <td>{{ pat.phone_number }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Age:</b></td>
+                                <td>{{ pat.age }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Address:</b></td>
+                                <td>{{ pat.address }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Refer By:</b></td>
+                                <td>{{ doc.first_name }} {{ doc.last_name }}</td>
+                            </tr>
+                            <tr>
+                                <td><b>Date:</b></td>
+                                <td>{{ inv.created_date }}</td>
+                            </tr>
+                            
+                          </tbody>
+                        </table>
+                      </div>
+                </div>
+              </div>
+            </div>
+            <div class="col-md-6">
+              <div class="card-body">
+                <h4 class="card-title">Action</h4>
+                
+                <div class="template-demo">
+                    <div class="table-responsive">
+                        <table class="table">
+                            
+                          
+                          <tbody>
+                              <tr>
+                                  <td>Print</td>
+                                  <td><a href="/print/{{ inv.id }}"><button type="button" class="btn btn-primary btn-rounded btn-fw">
+                                    Print
+                                    <i class="mdi mdi-printer btn-icon-append"></i>                                                                              
+                                  </button></a></td>
+                                  <td></td>
+                              </tr>
+                              <tr>
+                                <td>Test</td>
+                                {% if inv.test_status == False %}
+                                <td><a href="/test-done/{{ inv.id }}"><button type="button" class="btn btn-success btn-rounded btn-fw">
+                                  Complete                                                                             
+                                </button></a></td>
+                                <td><label class="badge badge-danger">Pending</label></td>
+                                {% else %}
+                                <td><button type="button" class="btn btn-light btn-rounded btn-fw">Disable</button></td>
+                                <td><label class="badge badge-success">Completed</label></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>Report</td>
+                                {% if inv.report_status == False %}
+                                <td><a href="/report-gen/{{ inv.id }}"><button type="button" class="btn btn-info btn-rounded btn-fw">
+                                  Generate                                                                              
+                                </button></a></td>
+                                <td><label class="badge badge-danger">Pending</label></td>
+                                {% else %}
+                                <td><a href="/view-report/{{ inv.report_id }}"><button type="button" class="btn btn-light btn-rounded btn-fw">Disable</button></a></td>
+                                <td><label class="badge badge-success">Completed</label></td>
+                                {% endif %}
+                            </tr>
+                            <tr>
+                                <td>Payment</td>
+                                <td><a href="/payment-recive/{{ inv.id }}"><button type="button" class="btn btn-dark btn-rounded btn-fw">
+                                  Recived                                                                            
+                                </button></a></td>
+                                {% if inv.due_amount == 0.0 %}
+                                <td><label class="badge badge-success">All Clear</label></td>
+                                {% else %}
+                                <td>Due:{{ inv.due_amount }}</td>
+                                {% endif %}
+                            </tr>
+                            
+                            
+                          </tbody>
+                        </table>
+                      </div>
+                   
+                  
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+
+
+
+
+<div class="row"> 
+      <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Test Details</h4>
+            
+            <div class="table-responsive">
+              <table class="table">
+                <thead>
+                  <tr>
+                    <th>SL No.</th>
+                    <th>Test Name</th>
+                  </tr>
+                </thead>
+                <tbody>
+                    {% for i in range(n) %}
+                  <tr>
+                    <td>{{ i+1 }}</td>
+                    <td>{{ test[i] }}</td>
+                  </tr>
+                    {% endfor %}
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-lg-6 grid-margin stretch-card">
+        <div class="card">
+          <div class="card-body">
+            <h4 class="card-title">Payment Details</h4>
+            
+            <div class="table-responsive">
+              <table class="table table-hover">
+                <thead>
+                  <tr>
+                    <th>Total</th>
+                    <th>Discount</th>
+                    <th>Paid</th>
+                    <th>Due</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>{{ inv.total_amount }}</td>
+                    <td>{{ inv.discount }}</td>
+                    <td>{{ inv.current_payment }}</td>
+                    <td>{{ inv.due_amount }}</td>
+                  </tr>
+                  
+                </tbody>
+              </table>
+            </div>
+          </div>
+        </div>
+      </div>
+      </div>
+
+    
+    
+   
+    
+  </div>
+
+
+{% endblock %}

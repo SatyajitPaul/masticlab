@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block title %}Add Doctor{% endblock %}
+{% block content %}
+
+<div class="content-wrapper">
+          
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="mr-md-3 mr-xl-5">
+              <h2>Add Test</h2>
+              <p class="mb-md-0">Add New Test Here</p>
+            </div>
+            <div class="d-flex">
+              <i class="mdi mdi-home text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
+              <p class="text-primary mb-0 hover-cursor">Add Test</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-end flex-wrap">
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
+              <i class="mdi mdi-download text-muted"></i>
+            </button>
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+              <i class="mdi mdi-clock-outline text-muted"></i>
+            </button>
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+              <i class="mdi mdi-plus text-muted"></i>
+            </button>
+            <a href="/invoice"><button class="btn btn-primary mt-2 mt-xl-0" >Generate Invoice</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+
+
+
+        <div class="col-12 grid-margin">
+            <div class="card">
+              <div class="card-body">
+                <h4 class="card-title">Please Provide Test Details Here</h4>
+                <form class="form-sample" method = "post">
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Test Name</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="name" required />
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Catagory</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="catagory" required/>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="row">
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Price</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="price"/>
+                        </div>
+                      </div>
+                    </div>
+                    <div class="col-md-6">
+                      <div class="form-group row">
+                        <label class="col-sm-3 col-form-label">Cost</label>
+                        <div class="col-sm-9">
+                          <input type="text" class="form-control" name="cost" />
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  
+                  
+                  <div class="row"><button type="submit" class="btn btn-dark btn-lg btn-block">Add Test</button></div>
+        
+                </form>
+              </div>
+            </div>
+          </div>
+          
+          
+          
+       
+    </div>
+    
+   
+    
+  </div>
+
+
+{% endblock %}

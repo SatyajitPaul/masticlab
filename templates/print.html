@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Invoice</title>
+    <style>
+        * {
+            box-sizing: border-box;
+        }
+
+        .greeting h2 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: lighter;
+            font-size: 25px;
+            text-align: left;
+            margin: 0;
+            color: crimson
+        }
+
+        .greeting h3 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: lighter;
+            font-size: 20px;
+            text-align: left;
+            margin: 0
+        }
+
+        .greeting h6 {
+            font-family: 'Raleway', sans-serif;
+            font-weight: lighter;
+            font-size: 12px;
+            text-align: left;
+            margin: 0
+        }
+
+        .test h6 {
+            font-weight: lighter;
+            font-size: 10px;
+            text-align: left;
+            margin: 0
+        }
+
+        .test h4 {
+            font-weight: lighter;
+            font-size: 14px;
+            text-align: left;
+            margin: 0
+        }
+
+        /* Create three unequal columns that floats next to each other */
+        .column {
+            float: left;
+            padding: 5px;
+
+            /* Should be removed. Only for demonstration */
+        }
+
+        .left {
+            width: 47%;
+        }
+
+        .right {
+            width: 28%
+        }
+
+        .middle {
+            width: 25%;
+        }
+
+        .inv1 {
+            width: 5%;
+        }
+
+        .inv2 {
+            width: 30%;
+        }
+
+        .inv3 {
+            width: 15%;
+        }
+
+        .inv4 {
+            width: 30%;
+        }
+
+        .inv5 {
+            width: 0%;
+        }
+
+        .inv6 {
+            width: 0%;
+        }
+
+        .inv7 {
+            width: 20%;
+        }
+
+        /* Clear floats after the columns */
+        .row:after {
+            content: "";
+            display: table;
+            clear: both;
+        }
+    </style>
+    <script type="text/javascript">
+        function divPrint() {
+          // Some logic determines which div should be printed...
+          // This example uses div3.
+          window.print(); return false
+        }
+      </script>
+</head>
+
+<body onload="divPrint()">
+    <div class="row">
+        <div class="column left greeting">
+            <h2>Aragyam Diagnostic Center</h2>
+            <h6><u>CMO(G)-9(78)-CLE/2020</u><br>Udaipur-Agr Road, Near Bagma Satsang Asram<br>
+                Phone: +91-9774919896, Email: aragyamdiag@gmail.com<br>
+                Website: www.aragyamdiag.com</h6>
+        </div>
+        <div class="column middle">
+
+        </div>
+        <div class="column right">
+
+            <h5>Invoice No:{{ 10000000 + inv.id }}<br>
+                Invoice Date:{{ inv.created_date.date() }}<br>
+                Invoice Time:{{ inv.created_date.time().strftime("%H:%M") }}<br>
+                Ref. Lab:None</h5>
+
+        </div>
+    </div>
+    <div class="row">
+        <div class="column left greeting">
+            <h6><b>Patient Name: </b> {{ pat.first_name }} {{ pat.last_name }}<br>
+                <b>Gender: </b> {{ pat.gender }}, <b>Age: </b> {{ pat.age }}<br>
+                <b>Phone No: </b> {{pat.phone_number}} <br>
+                <b>Adress: </b> {{ pat.adress }}
+            </h6>
+        </div>
+        <div class="column middle greeting">
+            <h6><b>Referred By</b><br> {{ doc.first_name }} {{ doc.last_name }}</h6>
+        </div>
+        <div class="column right greeting">
+            <h3>PRN:{{ 10000000 + inv.id }}</h3>
+        </div>
+    </div>
+    <div class="row greeting">
+        <div class="column inv1">
+            <h6 style="color: blue">No.</h6>
+
+        </div>
+        <div class="column inv2">
+            <h6 style="color: blue">Test Name</h6>
+
+        </div>
+        <div class="column inv3">
+            <h6 style="color: blue">Test Code</h6>
+
+        </div>
+        <div class="column inv4">
+            <h6 style="color: blue">Test Profile</h6>
+
+        </div>
+        
+        
+        <div class="column inv7">
+            <h6 style="color: blue">Price</h6>
+
+        </div>
+
+    </div>
+    {% for i in range(n) %}
+    <div class="row test">
+        <div class="column inv1">
+            <h6>{{ i+1 }}</h6>
+
+        </div>
+        <div class="column inv2">
+            <h6>{{ testName[i] }}</h6>
+
+        </div>
+        <div class="column inv3">
+            <h6> {{ testCode[i] }} </h6>
+
+        </div>
+        <div class="column inv4">
+            <h6> {{ testProfile[i] }} </h6>
+
+        </div>
+        
+        
+        <div class="column inv7">
+            <h6> {{ testPrice[i] }} </h6>
+
+        </div>
+
+    </div>
+    {% endfor %}
+    
+    
+    <div class="row test">
+        <div class="column inv1"></div>
+        <div class="column inv2"></div>
+        <div class="column inv3"></div>
+        <div class="column inv4">
+            <h4>GRAND TOTAL</h4>
+
+        </div>
+        <div class="column inv5"></div>
+        <div class="column inv6"></div>
+        <div class="column inv7">
+            <h4>{{ inv.total_amount }}</h4>
+        </div>
+
+    </div>
+    <div class="row test">
+        <div class="column inv1"></div>
+        <div class="column inv2"></div>
+        <div class="column inv3"></div>
+        <div class="column inv4">
+            <h4>Recived</h4>
+
+        </div>
+        <div class="column inv5"></div>
+        <div class="column inv6"></div>
+        <div class="column inv7">
+            <h4>{{ inv.current_payment }}</h4>
+        </div>
+
+    </div>
+    <div class="row test">
+        <div class="column inv1"></div>
+        <div class="column inv2"></div>
+        <div class="column inv3"></div>
+        <div class="column inv4">
+            <h4>Discount:({{ inv.discount }}%)</h4>
+
+        </div>
+        <div class="column inv5"></div>
+        <div class="column inv6"></div>
+        <div class="column inv7">
+            <h4>{{ inv.total_amount*inv.discount/100.00 }} </h4>
+        </div>
+
+    </div>
+    <div class="row test">
+        <div class="column inv1"></div>
+        <div class="column inv2"></div>
+        <div class="column inv3"></div>
+        <div class="column inv4">
+            <h4>Amount Due</h4>
+
+        </div>
+        <div class="column inv5"></div>
+        <div class="column inv6"></div>
+        <div class="column inv7">
+            <h4>{{ inv.due_amount }}</h4>
+        </div>
+
+    </div>
+    <br><br><br>
+    <div class="row">
+        <div class="column left greeting">
+            <h6>Rupees One Thousand Two Hundred and Thirty Only<br><br>
+                <b>Report Delivery Date:{{ d.date()  }} <br>Delivery Time: 6:00 PM</b>
+            </h6>
+        </div>
+        <div class="column middle greeting">
+
+        </div>
+        <div class="column right greeting">
+            <h3> </h3><br>
+            <h6><b>For Aryagm Diagnostic Center</b><br>
+                (Authorised Signatory)
+            </h6>
+        </div>
+    </div>
+
+
+
+
+</body>
+
+</html>

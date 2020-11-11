@@ -1,0 +1,112 @@
+{% extends "base.html" %}
+{% block title %}Doctor List{% endblock %}
+{% block content %}
+
+<div class="content-wrapper">
+          
+    <div class="row">
+      <div class="col-md-12 grid-margin">
+        <div class="d-flex justify-content-between flex-wrap">
+          <div class="d-flex align-items-end flex-wrap">
+            <div class="mr-md-3 mr-xl-5">
+              <h2>Invoice List</h2>
+              <p class="mb-md-0">All Invoice Are Listed Here</p>
+            </div>
+            <div class="d-flex">
+              <i class="mdi mdi-home text-muted hover-cursor"></i>
+              <p class="text-muted mb-0 hover-cursor">&nbsp;/&nbsp;Dashboard&nbsp;/&nbsp;</p>
+              <p class="text-primary mb-0 hover-cursor">Invoice List</p>
+            </div>
+          </div>
+          <div class="d-flex justify-content-between align-items-end flex-wrap">
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 d-none d-md-block ">
+              <i class="mdi mdi-download text-muted"></i>
+            </button>
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+              <i class="mdi mdi-clock-outline text-muted"></i>
+            </button>
+            <button type="button" class="btn btn-light bg-white btn-icon mr-3 mt-2 mt-xl-0">
+              <i class="mdi mdi-plus text-muted"></i>
+            </button>
+            <a href="/invoice"><button class="btn btn-primary mt-2 mt-xl-0" >Generate Invoice</button></a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+        <div class="col-md-12 stretch-card">
+          <div class="card">
+            <div class="card-body">
+              <p class="card-title">Patient List</p>
+              <div class="table-responsive">
+                <table id="recent-purchases-listing" class="table">
+                  <thead>
+                    <tr>
+                        <th>ID.</th>
+                        <th>Test</th>
+                        <th>Total</th>                        
+                        <th>Due</th>
+                        <th>Status</th>
+                        <th>Report</th>
+                        <th>Modify</th>
+                        <th>Print</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {% for i in invoice %}
+                    <tr>
+                        <td>{{ i.id }}</td>
+                        <td>{{ i.number_of_test }}</td>
+                        <td>{{ i.total_amount }}</td>
+                        <td>{{ i.due_amount }}</td>
+                        <td>
+                          {% if i.test_status == True %}
+                          <label class="badge badge-success">Completed</label>
+                          {% else %}
+                          <label class="badge badge-danger">Pending</label>
+                          {% endif %}
+                        </td>
+                        <td>
+                          {% if i.report_status == True %}
+                          <label class="badge badge-success">Completed</label>
+                          {% else %}
+                          <label class="badge badge-danger">Pending</label>
+                          {% endif %}
+                        </td>
+                        <td><a href="/view-invoice/{{ i.id }}"><button type="button" class="btn btn-outline-secondary btn-icon-text">View
+                            <i class="mdi mdi-file-check btn-icon-append"></i>  
+                          </button></a></td>
+                        <td><a href="/print/{{ i.id }}" ><button type="button" class="btn btn-outline-info btn-icon-text">
+                            Print
+                            <i class="mdi mdi-printer btn-icon-append"></i>                                                                              
+                          </button></a>
+                        </td>
+                    </tr>
+                    {% endfor %}
+                    <!-- {% for p in patient %} 
+                    <tr>
+                        <td>123</td>
+                        <td>Set Name</td>
+                        <td>P9999999</td>
+                        <td>Doc</td>
+                        <td>View</td>
+                        <td><button type="button" class="btn btn-info btn-icon-text">Print
+                            <i class="mdi mdi-printer btn-icon-append"></i>                                                         
+                          </button>
+                        </td>
+                    </tr>
+                     {% endfor %} -->
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+   
+    
+  </div>
+
+
+{% endblock %}
